@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 jinja2
-itsdangerous
-pydantic
 python-multipart
 genai
+openai
+tiktoken==0.4.0  # This version has prebuilt wheels
