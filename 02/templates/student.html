@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+    <link rel="stylesheet" href="../static/student.css">
+    
+    <style>
+    .chatbot {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .chatbot-icon {
+        border-radius: 50%;
+        border: 4px solid #007bff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        cursor: pointer;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .chatbot-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    }
+    </style>
+</head>
+<body>
+    <h2>Welcome to GDG Club Events Page</h2>
+    
+    <div class="chatbot">
+    <a href="/02/templates/chatbot.html">
+        <img 
+            src="../static/chatbot.png" 
+            alt="Chatbot Image"
+            class="chatbot-icon"
+        >
+        </a>
+    </div>
+
+    {% for event in events %}
+    <div class="event">
+        <h3>{{ event.title }}</h3>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

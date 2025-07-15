@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* Floating chatbot icon */
+    .chatbot-icon-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .chatbot-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 4px solid #007bff;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .chatbot-icon:hover {
+      transform: scale(1.1);
+    }
+
+    /* Chat window */
+    .chat-window {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      background-color: #fff;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .chat-input button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-bottom: 8px;
+    }
+
+    .user-message {
+      text-align: right;
+      color: #007bff;
+    }
+
+    .bot-message {
+      text-align: left;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chatbot</h1>
+
+  <!-- Chatbot icon -->
+  <div class="chatbot-icon-container">
+    <img src="../static/chatbot.png" alt="Chatbot" class="chatbot-icon" onclick="toggleChat()" />
+  </div>
+
+  <!-- Chat window -->
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">Chat with Bot</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+    <script>
+    async function sendMessage() {
+        const input = document.getElementById('userInput');
+        const message = input.value.trim();
+        if (message === '') return;
+
+        // Show user message
+        const chatMessages = document.getElementById('chatMessages');
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message user-message';
+        userMsg.textContent = message;
+        chatMessages.appendChild(userMsg);
+
+        // Clear input
+        input.value = '';
+
+        try {
+        const response = await fetch('http://127.0.0.1:8000/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message }),
+        });
+
+        const data = await response.json();
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot-message';
+        botMsg.textContent = data.response;
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        } catch (error) {
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'message bot-message';
+        errorMsg.textContent = "Bot: Sorry, something went wrong.";
+        chatMessages.appendChild(errorMsg);
+        }
+    }
+    </script>
+
+</body>
+</html>

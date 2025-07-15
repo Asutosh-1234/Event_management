@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Management</title>
+  <link rel="stylesheet" href="../static/em.css">
+</head>
+<body>
+  <div class="main">
+    <h1>Manage Your Events</h1>
+    <div class="container">
+      <ul>
+        {% for event in events %}
+        <li class="event-item">
+          <h3>{{ event.title }}</h3>
+          <p>{{ event.description }}</p>
+          <p><strong>Date:</strong> {{ event.date }}</p>
+          <a href="/edit/{{ event.id }}" class="btn edit">Edit</a>
+          <form action="/delete/{{ event.id }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn delete">Delete</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
+

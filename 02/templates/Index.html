@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EventPro - Event Management</title>
+  <link rel="stylesheet" href="../static/index.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">Your Name</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Events</a></li>
+        <li><a href="#testimonials">Our Club</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>What we can do through this website</h1>
+      <p>We can manage our events and club activities through this website. It will help us organize everything efficiently and manage club members and their activities.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="about section">
+      <h2>About Our Club and Events</h2>
+      <h3 style="font-size: 24px;">Our Club name is GDG Club (Google Developer Group Club)</h3>
+      <p>We are a group of tech enthusiasts who love to organize and plan impactful events. We create opportunities for junior members and other students to grow.</p>
+    </section>
+
+    <section id="services" class="services-section">
+      <h2>What you will get in this website</h2>
+      <div class="service-cards">
+        <div class="card">
+          <h3>What We Did Previously</h3>
+          <p>Previous events include "Re lekh", Build with AI, Gen AI Campaign, and Solution Challenge Event.</p>
+        </div>
+        <div class="card">
+          <h3>What We Do Now</h3>
+          <p>Recruiting new technical wizards for the community, and planning for 2025-26 events.</p>
+        </div>
+        <div class="card">
+          <h3>What We Will Do</h3>
+          <p>Workshops on Agentic AI and Data Science, Hackathons, and Paid Internship Programs for winners.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="form__section">
+  <div class="form__wrapper">
+    <form class="form" method="POST" action="/login">
+      <!-- form content here -->
+       <form class="form" method="POST" action="/login">
+        <div class="form__title">Login Form</div>
+        <div class="form__sub-title">Please Sign In to Access Your Account</div>
+
+        <label class="form__input-label" for="username">Email</label>
+        <div class="form__input-wrapper">
+          <input
+            class="form__input"
+            placeholder="Type your email..."
+            type="text"
+            id="username"
+            name="username"
+            required
+          />
+        </div>
+
+        <label class="form__input-label" for="password-input">Password</label>
+        <div class="form__input-wrapper">
+          <input
+            id="password-input"
+            class="form__input form__input--has-svg"
+            placeholder="Type your password..."
+            type="password"
+            name="password"
+            required
+          />
+          <div class="form__pass-toggle" onclick="togglePasswordVisibility()">
+            <!-- SVG Icon here -->
+            👁️
+          </div>
+        </div>
+
+        <a href="#" class="form__remmember">Forgot your password?</a>
+        <button class="form__submit-btn" type="submit">Submit</button>
+        <a href="#" class="form__sign-up">Create a New Account</a>
+      </form>
+    </form>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> EventPro. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function togglePasswordVisibility() {
+      const input = document.getElementById('password-input');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

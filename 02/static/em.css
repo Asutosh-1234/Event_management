@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.main {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-item {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  margin: 5px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn.edit {
+  background-color: #4CAF50;
+}
+
+.btn.delete {
+  background-color: #f44336;
+}
